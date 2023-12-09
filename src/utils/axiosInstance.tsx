@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const axiosInterceptorInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: process.env.BASE_URL_DEMO_APP,
 });
 
-axiosInterceptorInstance.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
     return config;
   },
@@ -13,7 +13,7 @@ axiosInterceptorInstance.interceptors.request.use(
   }
 );
 
-axiosInterceptorInstance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -22,4 +22,4 @@ axiosInterceptorInstance.interceptors.response.use(
   }
 );
 
-export default axiosInterceptorInstance;
+export default axiosInstance;
