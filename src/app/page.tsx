@@ -9,14 +9,12 @@ export default function Home() {
     queryFn: productsApi.getProducts,
   });
 
-  console.log({ data });
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className="container mx-auto">
       {data.products.map((product: Product) => (
         <div key={product.id}>{product.title}</div>
       ))}
