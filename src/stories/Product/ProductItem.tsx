@@ -3,18 +3,28 @@ import { Product } from "@/utils/interfaces";
 import StarRating from "../StarRating";
 import Tooltip from "../Tooltip/Tooltip";
 import { truncateText } from "@/helper";
+import { useRouter } from "next/navigation";
 
 interface ProductItemProps {
   product: Product;
 }
 
 function ProductItem({ product }: ProductItemProps) {
+  const router = useRouter();
+
   const originalPrice = product.discountPercentage
     ? product.price / (1 - product.discountPercentage / 100)
     : product.price;
 
+  const handleClick = () => {
+    router.push(`/product/${product.id}`);
+  };
+
   return (
-    <div className="group relative rounded-md overflow-hidden min-h-[40vh] border border-gray-100 hover:shadow-md transition-shadow ease-in delay-75 cursor-pointer">
+    <div
+      className="group relative rounded-md overflow-hidden min-h-[40vh] border border-gray-100 hover:shadow-md transition-shadow ease-in delay-75 cursor-pointer"
+      onClick={handleClick}
+    >
       {product.discountPercentage && (
         <div className="absolute top-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded-br-md opacity-0 group-hover:opacity-100 transition-opacity delay-100 ease-in-out">
           {product.discountPercentage.toFixed(0)}% Off
