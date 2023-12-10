@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "jest.config.js",
-    "jest.setup.js"
+    "jest.setup.js",
+    "tsdx.config.js"
   ],
   "exclude": ["node_modules"],
   "types": ["@testing-library/jest-dom"]

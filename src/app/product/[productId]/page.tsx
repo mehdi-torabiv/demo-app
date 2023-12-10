@@ -10,8 +10,10 @@ import Link from "next/link";
 import Button from "@/stories/Button/Button";
 import ProductCategoryBadge from "@/stories/Product/ProductCategoryBadge";
 import Loading from "@/stories/Loading/Loading";
+import { useRouter } from "next/navigation";
 
 function ProductDetails() {
+  const router = useRouter();
   const params = useParams();
   const productId = Array.isArray(params.productId)
     ? params.productId[0]
@@ -32,8 +34,8 @@ function ProductDetails() {
     : product?.price;
 
   return (
-    <div className="container mx-auto">
-      <div className="flex flex-col md:flex-row border border-gray-100 justify-between md:p-8 shadow-sm mt-12 rounded-md space-x-5">
+    <div className="container mx-auto p-3 md:p-0">
+      <div className="flex flex-col p-4 md:flex-row border border-gray-100 justify-between md:p-8 shadow-sm mt-12 rounded-md md:space-x-5">
         <div className="md:w-2/5">
           <Link
             href={"/"}
@@ -70,9 +72,15 @@ function ProductDetails() {
           </div>
           <ProductCategoryBadge category={product.category} />
           <p className="text-sm">{product.description}</p>
-          <div className="w-full p-3 md:absolute md:bottom-0">
+          <div className="w-full flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between md:space-x-3 md:p-3 md:absolute md:bottom-0">
             <Button type="button" className="w-full">
               Add to Basket
+            </Button>
+            <Button
+              className="w-full bg-orange-400"
+              onClick={() => router.push(`/product/edit/${product.id}`)}
+            >
+              Edit Product
             </Button>
           </div>
         </div>

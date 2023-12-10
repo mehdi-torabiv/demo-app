@@ -49,7 +49,7 @@ function SwiperComponent({
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
-          <div className="flex w-full md:h-[80vh] md:max-h-[80vh] items-center justify-center">
+          <div className="flex w-full max-h-[25vh] md:h-[80vh] md:max-h-[80vh] items-center justify-center">
             <img
               src={slide}
               alt={slide}
