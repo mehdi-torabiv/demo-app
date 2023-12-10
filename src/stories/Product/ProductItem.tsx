@@ -1,8 +1,8 @@
 import React from "react";
 import { Product } from "@/utils/interfaces";
-import StarRating from "../StarRating";
+import StarRating from "../StarRating/StarRating";
 import Tooltip from "../Tooltip/Tooltip";
-import { truncateText } from "@/helper";
+import { calculateOriginalPrice, truncateText } from "@/helper";
 import { useRouter } from "next/navigation";
 
 interface ProductItemProps {
@@ -12,9 +12,10 @@ interface ProductItemProps {
 function ProductItem({ product }: ProductItemProps) {
   const router = useRouter();
 
-  const originalPrice = product.discountPercentage
-    ? product.price / (1 - product.discountPercentage / 100)
-    : product.price;
+  const originalPrice = calculateOriginalPrice(
+    product.price,
+    product.discountPercentage
+  );
 
   const handleClick = () => {
     router.push(`/product/${product.id}`);
@@ -22,7 +23,7 @@ function ProductItem({ product }: ProductItemProps) {
 
   return (
     <div
-      className="group relative rounded-md overflow-hidden min-h-[40vh] border border-gray-100 hover:shadow-md transition-shadow ease-in delay-75 cursor-pointer"
+      className="group relative rounded-md min-h-[40vh] border border-gray-100 hover:shadow-md transition-shadow ease-in delay-75 cursor-pointer"
       onClick={handleClick}
     >
       {product.discountPercentage && (
@@ -49,7 +50,7 @@ function ProductItem({ product }: ProductItemProps) {
 
         <p className="text-sm">{product.description}</p>
 
-        <div className="w-full flex absolute bottom-3 items-baseline mt-2">
+        <div className="w-full flex xl:absolute bottom-3 items-baseline mt-2">
           <div>
             <span className="text-sm font-semibold text-gray-800">
               ${product.price.toFixed(2)}

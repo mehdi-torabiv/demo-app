@@ -1,3 +1,11 @@
+import { useState } from "react";
+
+interface TooltipProps {
+  children: React.ReactNode;
+  text: string;
+  position?: "top" | "bottom" | "left" | "right";
+}
+
 /**
  * Tooltip component that shows text on hover.
  *
@@ -8,15 +16,11 @@
  * @returns {JSX.Element} The Tooltip component.
  */
 
-import { useState } from "react";
-
-interface TooltipProps {
-  children: React.ReactNode;
-  text: string;
-  position?: "top" | "bottom" | "left" | "right";
-}
-
-function Tooltip({ children, text, position = "top" }: TooltipProps) {
+function Tooltip({
+  children,
+  text,
+  position = "top",
+}: TooltipProps): JSX.Element {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const getTooltipPosition = () => {

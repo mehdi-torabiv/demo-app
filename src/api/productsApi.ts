@@ -33,6 +33,16 @@ const productsApi = {
       return handleError(error);
     }
   },
+  getProductCategory: async (category: string) => {
+    try {
+      const response = await axiosInstance.get<Product[]>(
+        `/products/category/${category}`
+      );
+      return handleResponse(response);
+    } catch (error) {
+      return handleError(error);
+    }
+  },
   createProduct: async (productData: Product) => {
     try {
       const response = await axiosInstance.post("/products", productData);
