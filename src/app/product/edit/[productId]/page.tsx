@@ -125,6 +125,7 @@ function ProductEdit() {
   const confirmDeleteProduct = () => {
     deleteMutation.mutate(product.id);
     setDeleteModalOpen(false);
+    router.push("/");
   };
 
   const handleSubmit = () => {

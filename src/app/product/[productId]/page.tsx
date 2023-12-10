@@ -73,9 +73,6 @@ function ProductDetails() {
           <ProductCategoryBadge category={product.category} />
           <p className="text-sm">{product.description}</p>
           <div className="w-full flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between md:space-x-3 md:p-3 md:absolute md:bottom-0">
-            <Button type="button" className="w-full">
-              Add to Basket
-            </Button>
             <Button
               className="w-full bg-orange-400"
               onClick={() => router.push(`/product/edit/${product.id}`)}
